@@ -226,12 +226,26 @@ function initTerminal() {
         } else {
             const output = document.createElement('span');
             output.className = 'terminal-output';
-            output.textContent = item.text;
             line.appendChild(output);
             body.appendChild(line);
-            seqIndex++;
-            const t = setTimeout(typeLine, 400);
-            terminalTimers.push(t);
+
+            let charIndex = 0;
+            const cursor = document.createElement('span');
+            cursor.className = 'terminal-cursor';
+            line.appendChild(cursor);
+
+            const typeChar = setInterval(() => {
+                output.textContent += item.text[charIndex];
+                charIndex++;
+                if (charIndex >= item.text.length) {
+                    clearInterval(typeChar);
+                    cursor.remove();
+                    seqIndex++;
+                    const t = setTimeout(typeLine, 150);
+                    terminalTimers.push(t);
+                }
+            }, 20);
+            terminalTimers.push(typeChar);
         }
     }
 
