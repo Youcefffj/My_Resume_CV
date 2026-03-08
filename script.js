@@ -135,7 +135,21 @@ const defaultTerminalSequence = [
     { type: 'output', text: 'Currently working on: Stardust \u00b7 LexIA v2' },
 ];
 
+// Track all active terminal timers so we can kill them on re-init
+let terminalTimers = [];
+
+function clearTerminalTimers() {
+    terminalTimers.forEach(id => {
+        clearInterval(id);
+        clearTimeout(id);
+    });
+    terminalTimers = [];
+}
+
 function initTerminal() {
+    // Kill any running animation before starting a new one
+    clearTerminalTimers();
+
     const body = document.getElementById('terminal-content');
     if (!body) return;
     body.innerHTML = '';
@@ -169,9 +183,11 @@ function initTerminal() {
 
     function typeLine() {
         if (seqIndex >= sequence.length) {
-            const cursor = document.createElement('span');
-            cursor.className = 'terminal-cursor';
-            body.lastElementChild.appendChild(cursor);
+            if (body.lastElementChild) {
+                const cursor = document.createElement('span');
+                cursor.className = 'terminal-cursor';
+                body.lastElementChild.appendChild(cursor);
+            }
             return;
         }
 
@@ -202,9 +218,11 @@ function initTerminal() {
                     clearInterval(typeChar);
                     cursor.remove();
                     seqIndex++;
-                    setTimeout(typeLine, 150);
+                    const t = setTimeout(typeLine, 150);
+                    terminalTimers.push(t);
                 }
             }, 50);
+            terminalTimers.push(typeChar);
         } else {
             const output = document.createElement('span');
             output.className = 'terminal-output';
@@ -212,11 +230,13 @@ function initTerminal() {
             line.appendChild(output);
             body.appendChild(line);
             seqIndex++;
-            setTimeout(typeLine, 400);
+            const t = setTimeout(typeLine, 400);
+            terminalTimers.push(t);
         }
     }
 
-    setTimeout(typeLine, 800);
+    const startTimer = setTimeout(typeLine, 800);
+    terminalTimers.push(startTimer);
 }
 
 /* ========== DYNAMIC PROJECTS ========== */
