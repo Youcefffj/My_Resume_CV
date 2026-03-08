@@ -16,15 +16,19 @@
     "projects": [
         {
             "title": "Stardust \u2014 Social Deduction Game",
+            "title_fr": "Stardust \u2014 Jeu de D\u00e9duction Sociale",
             "desc": "Social deduction game inspired by Blood on the Clocktower with proximity voice chat, built on Source 2.",
+            "desc_fr": "Jeu de d\u00e9duction sociale inspir\u00e9 de Blood on the Clocktower avec chat vocal de proximit\u00e9, d\u00e9velopp\u00e9 sur Source 2.",
             "tags": ["C#", "s&box", "Source 2"],
-            "badge": { "text": "In Development", "type": "wip" },
+            "badge": { "text": "In Development", "text_fr": "En D\u00e9veloppement", "type": "wip" },
             "repo": "",
             "pinned": true
         },
         {
             "title": "IoT \u2014 Automated Aquarium",
+            "title_fr": "IoT \u2014 Aquarium Automatis\u00e9",
             "desc": "Embedded system managing temperature, water level, and feeding via sensors and mobile app control.",
+            "desc_fr": "Syst\u00e8me embarqu\u00e9 g\u00e9rant la temp\u00e9rature, le niveau d'eau et l'alimentation via des capteurs et une application mobile.",
             "tags": ["Arduino", "Sensors", "Mobile App"],
             "badge": null,
             "repo": "",
