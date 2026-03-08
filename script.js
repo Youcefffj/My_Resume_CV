@@ -7,9 +7,9 @@ const FALLBACK_CONFIG = {
     status: { auto: true, fallback: ['Stardust', 'LexIA v2'] },
     terminal: [
         { type: 'command', text: 'whoami' },
-        { type: 'output', text: 'Youcef Yaich \u2014 Cybersecurity Engineer & AI Enthusiast' },
+        { type: 'command', text: 'Youcef Yaich \u2014 Cybersecurity Engineer & AI Enthusiast' },
         { type: 'command', text: 'skills --list' },
-        { type: 'output', text: '[ Cybersecurity \u00b7 Data Security \u00b7 LLM Security \u00b7 AI/ML \u00b7 DevOps \u00b7 Full-Stack ]' },
+        { type: 'command', text: '[ Cybersecurity \u00b7 Data Security \u00b7 LLM Security \u00b7 AI/ML \u00b7 DevOps \u00b7 Full-Stack ]' },
         { type: 'command', text: 'status' },
         { type: 'output', text: '__STATUS__' }
     ],
@@ -119,9 +119,9 @@ function initStatus() {
 /* ========== TERMINAL TYPING ANIMATION ========== */
 const defaultTerminalSequence = [
     { type: 'command', text: 'whoami' },
-    { type: 'output', text: 'Youcef Yaich \u2014 Cybersecurity Engineer & AI Builder' },
+    { type: 'command', text: 'Youcef Yaich \u2014 Cybersecurity Engineer & AI Builder' },
     { type: 'command', text: 'skills --list' },
-    { type: 'output', text: '[ Cybersecurity \u00b7 AI/ML \u00b7 DevOps \u00b7 Full-Stack ]' },
+    { type: 'command', text: '[ Cybersecurity \u00b7 AI/ML \u00b7 DevOps \u00b7 Full-Stack ]' },
     { type: 'command', text: 'status' },
     { type: 'output', text: 'Currently working on: Stardust \u00b7 LexIA v2' },
 ];
@@ -200,7 +200,7 @@ function initTerminal() {
 /* ========== DYNAMIC PROJECTS ========== */
 
 // Repos to hide (profile repo, this portfolio, etc.)
-const HIDDEN_REPOS = ['youcefffj', 'my_resume_cv', 'candr-ecommerce', 'agora', 'alim-care', 'crypto-courbe-api', 'nft', 'selfmade', 'windowserverexolab4'];
+const HIDDEN_REPOS = ['youcefffj', 'Portfolio', 'candr-ecommerce', 'agora', 'alim-care', 'crypto-courbe-api', 'nft', 'selfmade', 'windowserverexolab4'];
 
 function getOverride(repoName) {
     if (!config || !config.projects) return null;
