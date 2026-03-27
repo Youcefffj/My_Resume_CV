@@ -30,6 +30,6 @@ Projects are fetched automatically from GitHub. New public repos appear on the p
 
 ## Contact
 
-- youcef.yaich@outlook.fr
+- youcef.yaich.pro@outlook.fr
 - [LinkedIn](https://www.linkedin.com/in/youcef-y-7b7378203/)
 - [GitHub](https://github.com/Youcefffj)
