@@ -640,7 +640,7 @@ async function fetchNowPlaying() {
         const url = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks'
             + '&user=' + encodeURIComponent(user)
             + '&api_key=' + encodeURIComponent(apiKey)
-            + '&format=json&limit=1';
+            + '&format=json&limit=10';
 
         const res = await fetch(url);
         if (!res.ok) {
@@ -654,7 +654,14 @@ async function fetchNowPlaying() {
             return;
         }
 
-        const track = data.recenttracks.track[0];
+        /* Filter out YouTube video scrobbles — they typically lack album info
+           and have no MusicBrainz ID on either track or artist */
+        const tracks = data.recenttracks.track;
+        const isMusicTrack = t =>
+            (t.mbid && t.mbid !== '') ||
+            (t.artist && t.artist.mbid && t.artist.mbid !== '') ||
+            (t.album && t.album['#text'] && t.album['#text'] !== '');
+        const track = tracks.find(isMusicTrack) || tracks[0];
         const isPlaying = track['@attr'] && track['@attr'].nowplaying === 'true';
 
         document.getElementById('spotify-track').textContent = track.name;
